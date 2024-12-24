@@ -1,12 +1,20 @@
+import bruschetta from './assets/restaurantfood.jpg';
+
 function Main() {
     return (
         <main>
             <section>
-                <h1>Welcome to Little Lemon!</h1>
-                <p>
-                    Little Lemon is your destination for fresh, delicious, and healthy meals. 
-                    Explore our menu and enjoy the flavors of the season.
-                </p>
+                <div className="container">
+                    <div className="text-content">
+                        <h1>Little Lemon</h1>
+                        <h2>Chicago</h2>
+                        <p>We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
+                        <button>Reserve a table</button>
+                    </div>
+                    <div className="image-content">
+                        <img src={bruschetta} alt="Bruschetta" />
+                    </div>
+                </div>
             </section>
 
             <section>
