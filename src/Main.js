@@ -18,7 +18,7 @@ function Main() {
             </section>
 
             <section>
-                <h2>This week specials!</h2>
+                <h2 style={{ marginTop: "5rem" }}>This week specials!</h2>
                 <div className="specials-container">
                     <div className="special-item">
                         <img src="/path/to/greek-salad.jpg" alt="Greek Salad" />
