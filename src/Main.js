@@ -1,4 +1,7 @@
-import bruschetta from './assets/restaurantfood.jpg';
+import restFood from './assets/restaurantfood.jpg';
+import bruschetta from './assets/bruchetta.svg'
+import greekSalad from './assets/greek-salad.jpg'
+import lemonDessert from './assets/lemon-dessert.jpg'
 
 function Main() {
     return (
@@ -12,7 +15,7 @@ function Main() {
                         <button className="button-primary">Reserve a table</button>
                     </div>
                     <div className="image-content">
-                        <img src={bruschetta} alt="Bruschetta" />
+                        <img src={restFood} alt="Bruschetta" />
                     </div>
                 </div>
             </section>
@@ -21,24 +24,25 @@ function Main() {
                 <h2 style={{ marginTop: "5rem" }}>This week specials!</h2>
                 <div className="specials-container">
                     <div className="special-item">
-                        <img src="/path/to/greek-salad.jpg" alt="Greek Salad" />
+                        <img src={greekSalad} alt="Greek Salad" />
                             <h3>Greek Salad <span className="price">$12.99</span></h3>
                             <p>The famous greek salad of crispy lettuce, peppers, olives and our Chicago-style feta cheese, garnished with crunchy garlic and rosemary croutons.</p>
                             <button className="button-primary">Order a delivery</button>
                     </div>
                     <div className="special-item">
-                        <img src="/path/to/bruschetta.jpg" alt="Bruschetta" />
+                        <img src={bruschetta} alt="Bruschetta" />
                             <h3>Bruschetta <span className="price">$5.99</span></h3>
                             <p>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.</p>
                         <button className="button-primary">Order a delivery</button>
                     </div>
                     <div className="special-item">
-                        <img src="/path/to/lemon-dessert.jpg" alt="Lemon Dessert" />
+                        <img src={lemonDessert} alt="Lemon Dessert" />
                             <h3>Lemon Dessert <span className="price">$5.00</span></h3>
                             <p>This comes straight from grandma's recipe book, every last ingredient has been sourced and is as authentic as can be imagined.</p>
                         <button className="button-primary">Order a delivery</button>
                     </div>
                 </div>
+
             </section>
 
             <section>

@@ -54,12 +54,12 @@ h2 {
 }
 
 .text-content h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   color: #FFCB05;
 }
 
 .text-content h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #FFFFFF;
 }
@@ -165,7 +165,7 @@ button:hover {
 
 .specials-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   margin: 20px 0;
 }
@@ -177,6 +177,7 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
+  max-width: 300px;
 }
 
 .special-item img {
@@ -221,6 +222,7 @@ button:hover {
 @media (max-width: 960px) {
   .specials-container {
     flex-direction: column;
+    align-items: center;
     gap: 20px;
   }
 }
