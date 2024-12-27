@@ -20,7 +20,7 @@ footer {
   padding: 1rem 0;
 }
 
-h1, h2 {
+h1, h2, h3, p {
   line-height: 1;
   font-family: "Markazi Text", serif;
   font-weight: normal;
@@ -32,6 +32,14 @@ h1 {
 
 h2 {
   font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.5rem;
 }
 
 .container {
@@ -100,6 +108,7 @@ button:hover {
 }
 
 .button-primary {
+  display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   background-color: #F4CE14;
@@ -107,6 +116,7 @@ button:hover {
   font-weight: bold;
   border: 0.1875rem solid #F4CE14;
   transition: background, border, color 0.5s;
+  margin-top: auto;
 }
 
 .button-primary:hover,
@@ -171,39 +181,51 @@ button:hover {
 }
 
 .special-item {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Ensure space between children */
   flex: 1;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 0px 0px 20px;
   text-align: center;
   max-width: 300px;
 }
 
 .special-item img {
   width: 100%;
-  height: auto;
-  border-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
 .special-item h3 {
-  font-size: 1.5rem;
+  /*font-size: 1.5rem;*/
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.price {
-  font-size: 1rem;
-  color: #FFCB05;
+  padding: 20px;
 }
 
 .special-item p {
-  font-size: 1rem;
+  padding: 10px;
+  font-size: 1.2rem;
   color: #555;
   margin: 10px 0 20px;
 }
+
+.special-item .button-primary {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.price {
+  /*font-size: 1rem;*/
+  color: var(--primary-green-color);
+}
+
 
 /*.order-button {*/
 /*  display: inline-block;*/
