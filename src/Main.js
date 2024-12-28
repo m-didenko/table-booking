@@ -9,6 +9,7 @@ import person4 from './assets/person4.png'
 import Star from './components/Star'
 import About from "./components/About";
 import Specials from "./components/Specials";
+import PeopleSay from "./components/PeopleSay";
 
 function Main() {
     return (
@@ -28,37 +29,7 @@ function Main() {
             </section>
 
             <Specials />
-
-            <section className="people-say-section">
-                <h2>What people say about us!</h2>
-                <div className="people-say-container">
-                    <div className="people-say-item">
-                        <img src={person2} alt="Maria Sanchez" />
-                        <h3>Maria Sanchez</h3>
-                        <Star count={5} />
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                    </div>
-                    <div className="people-say-item">
-                        <img src={person1} alt="Antony Clifton" />
-                        <h3>Antony Clifton</h3>
-                        <Star count={5} />
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                    </div>
-                    <div className="people-say-item">
-                        <img src={person4} alt="Tamika Jackson" />
-                        <h3>Tamika Jackson</h3>
-                        <Star count={4} />
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                    </div>
-                    <div className="people-say-item">
-                        <img src={person3} alt="Brandon Ming" />
-                        <h3>Brandon Ming</h3>
-                        <Star count={5} />
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                    </div>
-                </div>
-
-            </section>
+            <PeopleSay />
 
             <section>
                 <About />
