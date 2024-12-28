@@ -1,0 +1,110 @@
+.site-footer {
+  background-color: #495E57;
+  color: #FFFFFF;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 960px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.site-footer-logo {
+  padding: 20px;
+  width: 100px;
+
+}
+
+.site-footer h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.1875rem;
+  margin-bottom: 1rem;
+}
+
+.site-footer a {
+  color: #FFFFFF;
+  transition: color 0.5s;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #F4CE14;
+}
+
+.site-footer-nav {
+  width: 150px;
+  text-align: center;
+}
+
+.site-footer-nav ul {
+  list-style-type: none;
+}
+
+.site-footer-nav li {
+  margin-bottom: 0.25rem;
+}
+
+.site-footer-contact {
+  width: 300px;
+  text-align: left;
+}
+
+.site-footer-contact svg {
+  margin-right: 0.5rem;
+}
+
+.site-footer-contact p {
+  margin-bottom: 0.25rem;
+}
+
+.site-footer-social {
+  width: 150px;
+  text-align: center;
+}
+
+.site-footer-social svg {
+  margin-right: 1rem;
+}
+
+@media (max-width: 960px) {
+  .site-footer {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .site-footer .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: auto auto;        /* 2 rows */
+    gap: 2rem;                            /* Spacing between items */
+  }
+
+  .site-footer-logo {
+    grid-column: 1;   /* Place in the first column */
+    grid-row: 1;      /* Place in the first row */
+  }
+
+  .site-footer-nav {
+    grid-column: 2;   /* Place in the second column */
+    grid-row: 1;      /* Place in the first row */
+    text-align: right;
+    justify-self: end;
+  }
+
+  .site-footer-contact {
+    grid-column: 1;   /* Place in the first column */
+    grid-row: 2;      /* Place in the second row */
+  }
+
+  .site-footer-social {
+    grid-column: 2;   /* Place in the second column */
+    grid-row: 2;      /* Place in the second row */
+    text-align: right;
+    justify-self: end;
+  }
+}
