@@ -83,8 +83,12 @@ const Reservations = () => {
 
     return (
         <div className="reservations-container">
-            <h1>Reservations</h1>
-            <form onSubmit={handleSubmit} className="reservations-form">
+            <h1 id="reservations-title">Reservations</h1>
+            <form
+                onSubmit={handleSubmit}
+                className="reservations-form"
+                aria-labelledby="reservations-title"
+            >
                 <div className="form-group">
                     <label htmlFor="date">Date:</label>
                     <input
@@ -94,7 +98,12 @@ const Reservations = () => {
                         value={formData.date}
                         onChange={handleChange}
                         required
+                        aria-required="true"
+                        aria-describedby="date-help"
                     />
+                    <span id="date-help" className="visually-hidden">
+                    Please select a date for your reservation.
+                </span>
                 </div>
                 <div className="form-group">
                     <label htmlFor="time">Time:</label>
@@ -104,7 +113,8 @@ const Reservations = () => {
                         value={formData.time}
                         onChange={handleChange}
                         required
-                        disabled={!formData.date || availableTimes.length === 0}
+                        aria-required="true"
+                        aria-disabled={!formData.date || availableTimes.length === 0}
                     >
                         <option value="" disabled>
                             {formData.date && availableTimes.length === 0
@@ -129,7 +139,12 @@ const Reservations = () => {
                         min="1"
                         max="10"
                         required
+                        aria-required="true"
+                        aria-describedby="guests-help"
                     />
+                    <span id="guests-help" className="visually-hidden">
+                    Enter the number of guests (between 1 and 10).
+                </span>
                 </div>
                 <div className="form-group">
                     <label htmlFor="occasion">Occasion:</label>
@@ -139,12 +154,19 @@ const Reservations = () => {
                         value={formData.occasion}
                         onChange={handleChange}
                         required
+                        aria-required="true"
                     >
                         <option value="Birthday">Birthday</option>
                         <option value="Anniversary">Anniversary</option>
                     </select>
                 </div>
-                <button type="submit" className="reservations-button" disabled={isSubmitting}>
+                <button
+                    type="submit"
+                    className="reservations-button"
+                    disabled={isSubmitting}
+                    aria-busy={isSubmitting}
+                    aria-live="polite"
+                >
                     {isSubmitting ? 'Submitting...' : 'Submit Reservation'}
                 </button>
             </form>
@@ -154,6 +176,7 @@ const Reservations = () => {
                     title="Reservation Confirmed"
                     message={`You have reserved for ${formData.guests} guest(s) on ${formData.date} at ${formData.time} for a ${formData.occasion}.`}
                     onClose={handleModalClose}
+                    aria-live="assertive"
                 />
             )}
         </div>
