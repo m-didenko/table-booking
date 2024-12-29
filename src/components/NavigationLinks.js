@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const links = [
     { path: '/', label: 'Home' },
@@ -11,11 +11,17 @@ const links = [
 ];
 
 const NavigationLinks = ({ onClick }) => {
+    const location = useLocation();
+
     return (
         <ul>
             {links.map((link) => (
                 <li key={link.path}>
-                    <Link to={link.path} onClick={onClick}>
+                    <Link
+                        to={link.path}
+                        onClick={onClick}
+                        className={location.pathname === link.path ? 'active' : ''}
+                    >
                         {link.label}
                     </Link>
                 </li>
