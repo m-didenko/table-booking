@@ -5,11 +5,17 @@ import Modal from '../components/Modal';
 import { fetchAPI, submitAPI } from '../utils/Api';
 
 const Reservations = () => {
-    const [formData, setFormData] = useState({
-        date: '',
-        time: '',
-        guests: 1,
-        occasion: 'Birthday',
+    const [formData, setFormData] = useState(() => {
+        // Retrieve initial form data from local storage if available
+        const savedFormData = localStorage.getItem('reservationFormData');
+        return savedFormData
+            ? JSON.parse(savedFormData)
+            : {
+                date: '',
+                time: '',
+                guests: 1,
+                occasion: 'Birthday',
+            };
     });
 
     const [availableTimes, setAvailableTimes] = useState([]);
@@ -18,17 +24,20 @@ const Reservations = () => {
 
     const navigate = useNavigate();
 
+    // Initialize times with today's available times
     const initializeTimes = () => {
         const today = new Date();
         return fetchAPI(today);
     };
 
+    // Update available times based on the selected date
     const updateTimes = (date) => {
         const selectedDate = new Date(date);
         setAvailableTimes(fetchAPI(selectedDate));
     };
 
     useEffect(() => {
+        // Set initial available times for today
         setAvailableTimes(initializeTimes());
     }, []);
 
@@ -37,6 +46,11 @@ const Reservations = () => {
             updateTimes(formData.date);
         }
     }, [formData.date]);
+
+    useEffect(() => {
+        // Save form data to local storage whenever it changes
+        localStorage.setItem('reservationFormData', JSON.stringify(formData));
+    }, [formData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,6 +65,10 @@ const Reservations = () => {
         setIsSubmitting(true);
         const success = submitAPI(formData);
         if (success) {
+            // Add the new booking time to the available times (if needed)
+            if (!availableTimes.includes(formData.time)) {
+                setAvailableTimes((prevTimes) => [...prevTimes, formData.time]);
+            }
             setIsModalOpen(true);
         } else {
             alert('Failed to submit the reservation. Please try again.');
@@ -60,7 +78,7 @@ const Reservations = () => {
 
     const handleModalClose = () => {
         setIsModalOpen(false);
-        navigate('/');
+        navigate('/'); // Redirect to home page
     };
 
     return (
