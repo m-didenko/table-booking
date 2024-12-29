@@ -12,6 +12,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Footer.css';
 import logoWhiteImage from './assets/logo-white.png';
+import React from "react";
+import NavigationLinks from "./components/NavigationLinks";
 
 const contacts = [
     { icon: faLocationDot, info: '678 Pisa Ave, Chicago, IL 60611', },
@@ -37,14 +39,7 @@ const Footer = () => {
                 />
                 <nav className="site-footer-nav">
                     <h4>Sitemap</h4>
-                    <ul>
-                        <li key='home'>
-                            <a href="#">Home</a>
-                        </li>
-                        <li key='about'>
-                            <a href="#">About</a>
-                        </li>
-                    </ul>
+                    <NavigationLinks />
                 </nav>
                 <div className="site-footer-contact">
                     <h4>Contact us</h4>
