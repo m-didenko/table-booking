@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Reservations.css';
+import Modal from '../components/Modal';
 
 const Reservations = () => {
     const [formData, setFormData] = useState({
@@ -8,6 +10,10 @@ const Reservations = () => {
         guests: 1,
         occasion: 'Birthday',
     });
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,7 +25,12 @@ const Reservations = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Reservation made for ${formData.guests} guest(s) on ${formData.date} at ${formData.time} for a ${formData.occasion}!`);
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+        navigate('/'); // Redirect to home page
     };
 
     const generateTimeOptions = () => {
@@ -91,10 +102,18 @@ const Reservations = () => {
                         <option value="Anniversary">Anniversary</option>
                     </select>
                 </div>
-                <button type="submit" className="submit-button">
+                <button type="submit" className="reservations-button">
                     Submit Reservation
                 </button>
             </form>
+
+            {isModalOpen && (
+                <Modal
+                    title="Reservation Confirmed"
+                    message={`You have reserved for ${formData.guests} guest(s) on ${formData.date} at ${formData.time} for a ${formData.occasion}.`}
+                    onClose={handleModalClose}
+                />
+            )}
         </div>
     );
 };
