@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Reservations.css';
 import Modal from '../components/Modal';
+import { fetchAPI, submitAPI } from '../utils/Api';
 
 const Reservations = () => {
     const [formData, setFormData] = useState({
@@ -11,9 +12,31 @@ const Reservations = () => {
         occasion: 'Birthday',
     });
 
+    const [availableTimes, setAvailableTimes] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const navigate = useNavigate();
+
+    const initializeTimes = () => {
+        const today = new Date();
+        return fetchAPI(today);
+    };
+
+    const updateTimes = (date) => {
+        const selectedDate = new Date(date);
+        setAvailableTimes(fetchAPI(selectedDate));
+    };
+
+    useEffect(() => {
+        setAvailableTimes(initializeTimes());
+    }, []);
+
+    useEffect(() => {
+        if (formData.date) {
+            updateTimes(formData.date);
+        }
+    }, [formData.date]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,23 +48,19 @@ const Reservations = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsModalOpen(true);
+        setIsSubmitting(true);
+        const success = submitAPI(formData);
+        if (success) {
+            setIsModalOpen(true);
+        } else {
+            alert('Failed to submit the reservation. Please try again.');
+        }
+        setIsSubmitting(false);
     };
 
     const handleModalClose = () => {
         setIsModalOpen(false);
-        navigate('/'); // Redirect to home page
-    };
-
-    const generateTimeOptions = () => {
-        const times = [];
-        for (let hour = 17; hour <= 23; hour++) {
-            for (let minutes = 0; minutes < 60; minutes += 30) {
-                const time = `${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-                times.push(time);
-            }
-        }
-        return times;
+        navigate('/');
     };
 
     return (
@@ -67,9 +86,14 @@ const Reservations = () => {
                         value={formData.time}
                         onChange={handleChange}
                         required
+                        disabled={!formData.date || availableTimes.length === 0}
                     >
-                        <option value="" disabled>Select a time</option>
-                        {generateTimeOptions().map((time) => (
+                        <option value="" disabled>
+                            {formData.date && availableTimes.length === 0
+                                ? 'No times available'
+                                : 'Select a time'}
+                        </option>
+                        {availableTimes.map((time) => (
                             <option key={time} value={time}>
                                 {time}
                             </option>
@@ -102,8 +126,8 @@ const Reservations = () => {
                         <option value="Anniversary">Anniversary</option>
                     </select>
                 </div>
-                <button type="submit" className="reservations-button">
-                    Submit Reservation
+                <button type="submit" className="reservations-button" disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit Reservation'}
                 </button>
             </form>
 
