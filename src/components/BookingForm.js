@@ -1,6 +1,13 @@
 import React from 'react';
 
-const BookingForm = ({ formData, availableTimes, isSubmitting, onChange, onSubmit }) => {
+const BookingForm = ({
+                         formData,
+                         availableTimes,
+                         validationErrors,
+                         isSubmitting,
+                         onChange,
+                         onSubmit,
+                     }) => {
     return (
         <form
             onSubmit={onSubmit}
@@ -19,9 +26,9 @@ const BookingForm = ({ formData, availableTimes, isSubmitting, onChange, onSubmi
                     aria-required="true"
                     aria-describedby="date-help"
                 />
-                <span id="date-help" className="visually-hidden">
-                    Please select a date for your reservation.
-                </span>
+                {validationErrors.date && (
+                    <span className="error-message">{validationErrors.date}</span>
+                )}
             </div>
             <div className="form-group">
                 <label htmlFor="time">Time:</label>
@@ -45,6 +52,9 @@ const BookingForm = ({ formData, availableTimes, isSubmitting, onChange, onSubmi
                         </option>
                     ))}
                 </select>
+                {validationErrors.time && (
+                    <span className="error-message">{validationErrors.time}</span>
+                )}
             </div>
             <div className="form-group">
                 <label htmlFor="guests">Number of Guests:</label>
@@ -60,9 +70,9 @@ const BookingForm = ({ formData, availableTimes, isSubmitting, onChange, onSubmi
                     aria-required="true"
                     aria-describedby="guests-help"
                 />
-                <span id="guests-help" className="visually-hidden">
-                    Enter the number of guests (between 1 and 10).
-                </span>
+                {validationErrors.guests && (
+                    <span className="error-message">{validationErrors.guests}</span>
+                )}
             </div>
             <div className="form-group">
                 <label htmlFor="occasion">Occasion:</label>

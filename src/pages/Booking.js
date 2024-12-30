@@ -13,12 +13,13 @@ const Booking = () => {
             : {
                 date: '',
                 time: '',
-                guests: 1,
+                guests: '',
                 occasion: 'Birthday',
             };
     });
 
     const [availableTimes, setAvailableTimes] = useState([]);
+    const [validationErrors, setValidationErrors] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -54,10 +55,27 @@ const Booking = () => {
             ...prev,
             [name]: value,
         }));
+        setValidationErrors((prev) => ({ ...prev, [name]: '' })); // Clear errors on change
+    };
+
+    const validateForm = () => {
+        const errors = {};
+        if (!formData.date) errors.date = 'Date is required.';
+        if (!formData.time) errors.time = 'Time is required.';
+        if (!formData.guests || formData.guests < 1 || formData.guests > 10) {
+            errors.guests = 'Number of guests must be between 1 and 10.';
+        }
+        return errors;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const errors = validateForm();
+        if (Object.keys(errors).length > 0) {
+            setValidationErrors(errors);
+            return;
+        }
+
         setIsSubmitting(true);
         const success = submitAPI(formData);
         if (success) {
@@ -82,6 +100,7 @@ const Booking = () => {
             <BookingForm
                 formData={formData}
                 availableTimes={availableTimes}
+                validationErrors={validationErrors}
                 isSubmitting={isSubmitting}
                 onChange={handleChange}
                 onSubmit={handleSubmit}
