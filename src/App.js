@@ -4,7 +4,7 @@ import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
-import Reservations from './pages/Reservations';
+import Booking from './pages/Booking';
 import Fallback from "./pages/Fallback";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
                 <Route path="/" element={<Main />} />
                 <Route path="/about" element={<Fallback />} />
                 <Route path="/menu" element={<Fallback />} />
-                <Route path="/reservations" element={<Reservations />} />
+                <Route path="/reservations" element={<Booking />} />
                 <Route path="/order-online" element={<Fallback />} />
                 <Route path="/login" element={<Fallback />} />
             </Routes>
